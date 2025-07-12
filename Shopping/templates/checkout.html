@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <title>Checkout</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Thank you for your purchase! 🌸</h1>
+    <div class="nav">
+        <a href="{{ url_for('index') }}">Back to Shop</a>
+    </div>
+    {% if cart %}
+        <h2 style="text-align:center;">Your Order Summary</h2>
+        <div class="container">
+            {% for item in cart %}
+            <div class="card">
+                <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}">
+                <h3>{{ item.name }}</h3>
+                <p class="price">₹{{ item.price }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align:center; margin-top: 20px;">
+            <p><strong>Subtotal:</strong> ₹{{ total }}</p>
+            <p><strong>Tax (18%):</strong> ₹{{ tax }}</p>
+            <p><strong>Total Bill:</strong> ₹{{ grand_total }}</p>
+        </div>
+    {% else %}
+        <p style="text-align:center;">Your cart was empty.</p>
+    {% endif %}
+    <p style="text-align:center;">Your flowers are on their way!</p>
+</body>
+</html>

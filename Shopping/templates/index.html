@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>Florist Shop</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>The Flowershop🌸</h1>
+
+    <div class="nav">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('cart') }}">🛒 View Cart</a>
+    </div>
+
+    <div class="container">
+        {% for product in products %}
+        <div class="card">
+            <img src="{{ url_for('static', filename='images/' + product.image) }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p class="price">₹{{ product.price }}</p>
+            <a class="button" href="{{ url_for('add_to_cart', product_id=product.id) }}">Add to Cart</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
